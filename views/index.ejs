@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+
+          
+body {
+            background-image: url('/fondo2.jpeg');
+            background-size: cover; /* Ajustar la imagen al tamaño de la ventana del navegador */
+            background-attachment: fixed; /* Opcional: hacer que el fondo permanezca fijo al desplazar la página */
+        }
+
+
+        
+th, input {
+    text-align: center;
+  }
+
+
+
+
+
+
+    /* Estilo para el modal de bienvenida */
+    .modal-welcome {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+    .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: #039cd8;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+        }
+        
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: #039cd8;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .5s;
+        }
+        
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+        
+        .navigation .btnLogin-popup {
+            width: 130px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #747272;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #039cd8;
+            font-weight: 500;
+            margin-left: 40px;
+            transform: .5s;
+        }
+        
+        .navigation .btnLogin-popup:hover {
+            background: #039cd8;
+            color: #162938;
+        }
+
+        /* Estilo para el modal de bienvenida */
+    .modal-welcome {
+      display: none;
+      position: fixed;
+      z-index: 1050;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* Añadir estilos a la barra de navegación */
+    .navbar {
+      background-color: #039cd8;
+    }
+
+    /* Cambiar el color de fondo de los elementos de la barra de navegación al pasar el ratón sobre ellos */
+    .navbar-nav li a:hover {
+      background-color: #055a80;
+    }
+
+    /* Estilo para el botón de "Continuar" */
+    #btn-continue {
+      background-color: #039cd8;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #btn-continue:hover {
+      background-color: #055a80;
+    }
+    /* Estilo para los paneles "well" */
+    .well {
+      margin: 10px;
+      padding: 20px;
+      border: 1px solid #039cd8;
+      background-color: #f0f8ff; /* Color de fondo azul claro */
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    }
+
+    /* Cambiar el color de fondo de los elementos "well" al pasar el ratón sobre ellos */
+    .well:hover {
+      background-color: #c0e2f5; /* Color de fondo azul más claro al pasar el ratón */
+    }
+
+    .bar-chart {
+            width: 100%;
+            background-color: #f0f0f0;
+            height: 30px;
+            position: relative;
+        }
+
+        .bar {
+            height: 100%;
+            background-color: #3498db;
+            transition: width 1s;
+        }
+  </style>
+</head>
+<body>
+
+
+<!-- Modal de Bienvenida -->
+<div class="modal-welcome">
+  <div class="modal-content">
+      <div class="text-center">
+          <h4>Bienvenido al área administrativa</h4>
+          <p>Gracias por utilizar nuestro sistema.</p>
+          <button id="btn-continue" class="btn btn-primary">Continuar</button>
+      </div>
+  </div>
+</div>
+
+<script>
+  // Mostrar el modal de bienvenida al cargar la página
+  $(document).ready(function () {
+      $(".modal-welcome").show();
+  });
+
+  // Ocultar el modal y desbloquear la página al hacer clic en el botón "Continuar"
+  $("#btn-continue").click(function () {
+      $(".modal-welcome").hide();
+  });
+</script>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Inicio</a></li>
+        <li><a href="usuario.ejs">Usuarios</a></li>
+        <li><a href="empleado.ejs">Empleados</a></li>
+        <li><a href="clientes.ejs">Clientes</a></li>
+        <li><a href="ordenes.ejs">Ordenes</a></li>
+        <li><a href="cotizacion.ejs">Cotizaciones</a></li>
+        <li><a href="categoria.ejs">Categoria</a></li>
+        <li><a href="producto.ejs">Productos</a></li>
+        <li><a href="servicio.ejs">Servicios</a></li>
+        <li><a href="proveedores.ejs">Proveedores</a></li>
+        <li><a href="materia.ejs">Materia Prima</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <nav class="navigation">
+      <div class="col-sm-3 sidenav hidden-xs">
+        <center>
+          <img src="/logo.png" alt="Logo del sitio web" style="width: 120px; height: auto;">
+        </center>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#">Inicio</a></li>
+          <li><a href="usuario.ejs">Usuarios</a></li>
+          <li><a href="empleado.ejs">Empleados</a></li>
+          <li><a href="clientes.ejs">Clientes</a></li>
+          <li><a href="ordenes.ejs">Ordenes</a></li>
+          <li><a href="cotizacion.ejs">Cotizaciones</a></li>
+          <li><a href="categoria.ejs">Categoria</a></li>
+          <li><a href="producto.ejs">Productos</a></li>
+          <li><a href="servicio.ejs">Servicios</a></li>
+          <li><a href="proveedores.ejs">Proveedores</a></li>
+          <li><a href="materia.ejs">Materia Prima</a></li>
+        </ul><br>
+      </div>
+    </nav>
+
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="well">
+            <h4>Menu</h4>
+            <p>Resumen de todas nuestras tablas.</p>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="well">
+            <h4>Usuario</h4>
+            <p>ADMINISTRADOR</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Clientes registrados</h4>
+            <div class="bar-chart">
+              <div class="bar" style="width: 0;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Empleados registrados</h4>
+            <div id="grafica" class="grafica">
+              <canvas id="miGrafico"></canvas> <!-- Aquí se mostrará el gráfico -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Proveedores</h4>
+            <canvas id="pieChart"></canvas> <!-- El gráfico de pastel se mostrará aquí -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Datos de ejemplo para el gráfico de pastel
+  var data = {
+      labels: ['Calidad', 'Precio'],
+      datasets: [{
+          data: [70, 30], // Aquí puedes ajustar los valores de Calidad y Precio
+          backgroundColor: ['#FF5733', '#33FF57'] // Colores de las secciones del pastel
+      }]
+  };
+
+  // Configuración del gráfico de pastel
+  var options = {};
+
+  // Obtén el contexto del lienzo en el elemento canvas
+  var ctx = document.getElementById('pieChart').getContext('2d');
+
+  // Crea el gráfico de pastel
+  var pieChart = new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: options
+  });
+</script>
+
+<script>
+        // Datos de ejemplo para el gráfico
+        var data = {
+            labels: ['', 'Empleados', 'Proveedores'],
+            datasets: [{
+                data: [30, 50, 20],
+                backgroundColor: ['#FFD700', '#C0C0C0', '#CD7F32']
+            }]
+        };
+
+        // Configuración del gráfico
+        var options = {
+            responsive: true
+        };
+
+        // Obtén el contexto del lienzo en el elemento canvas
+        var ctx = document.getElementById('miGrafico').getContext('2d');
+
+        // Crea el gráfico de pastel
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+        });
+    </script>
+
+<script>
+  // Supongamos que obtienes la cantidad de clientes registrados desde la base de datos
+  var clientesRegistrados = 50; // Esto es solo un valor de ejemplo
+
+  // Calcula el ancho de la barra de acuerdo con la cantidad de clientes registrados
+  var anchoBarra = (clientesRegistrados / 100) * 100; // Suponemos un máximo de 100 clientes
+
+  // Aplica el ancho a la barra
+  var barra = document.querySelector(".bar");
+  barra.style.width = anchoBarra + "%";
+</script>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Categoria</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+
+        
+body {
+            background-image: url('/fondo2.jpeg');
+            background-size: cover; /* Ajustar la imagen al tamaño de la ventana del navegador */
+            background-attachment: fixed; /* Opcional: hacer que el fondo permanezca fijo al desplazar la página */
+        }
+
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: #039cd8;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+        }
+        
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: #039cd8;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .5s;
+        }
+        
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+        
+        .navigation .btnLogin-popup {
+            width: 130px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #747272;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #039cd8;
+            font-weight: 500;
+            margin-left: 40px;
+            transform: .5s;
+        }
+        
+        .navigation .btnLogin-popup:hover {
+            background: #039cd8;
+            color: #162938;
+        }
+  </style>
+
+
+  
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/index.ejs ">Inicio</a></li>
+        <li><a href="/usuario.ejs">Usuarios</a></li>
+        <li><a href="/empleado.ejs">Empleados</a></li>
+        <li><a href="/clientes.ejs">Clientes</a></li>
+        <li><a href="/ordenes.ejs">Ordenes</a></li>
+        <li><a href="/cotizacion.ejs">Cotizaciones</a></li>
+        <li><a href="/categoria.ejs">Categoria</a></li>
+        <li><a href="/producto.ejs">Productos</a></li>
+        <li><a href="/servicio.ejs">Servicios</a></li>
+        <li><a href="/proveedores.ejs">Proveedores</a></li>
+        <li><a href="/materia.ejs">Materia Prima</a></li>
+      </ul>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <nav class="navigation">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <center><img src="/logo.png" alt="Logo del siteo web" style="width: 120px; height: auto;"></center>
+      <ul class="nav nav-pills nav-stacked">
+        <li ><a href="/index.ejs">Inicio</a></li>
+        <li><a href="/usuario.ejs">Usuarios</a></li>
+        <li><a href="/empleado.ejs">Empleados</a></li>
+        <li><a href="/clientes.ejs">Clientes</a></li>
+        <li><a href="/ordenes.ejs">Ordenes</a></li>
+        <li><a href="/cotizacion.ejs">Cotizaciones</a></li>
+        <li class="active"><a href="/categoria.ejs">Categoria</a></li>
+        <li><a href="/producto.ejs">Productos</a></li>
+        <li><a href="/servicio.ejs">Servicios</a></li>
+        <li><a href="/proveedores.ejs">Proveedores</a></li>
+        <li><a href="/materia.ejs">Materia Prima</a></li>
+      </ul>
+      </ul><br>
+    </div>
+  </nav>
+    <br>
+    
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>Categoria</h4>
+        <p>Ingresa una nueva categoria</p>
+      </div>
+    </div>
+
+
+    <!-- tabla de registro-->
+    <div class="col-sm-9">
+        <div class="well">
+          
+
+            <div  >    
+                
+                <form action="/saveCategoria" method="POST">
+                    <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1">
+                    </div> 
+                    <br>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea type="text" class="form-control" id="descripcion" name="descripcion" tabindex="1"></textarea>
+                    </div>  
+                    <br>
+                    <br>
+
+                    <center>
+                        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                    <a href="categoria.ejs" class="btn btn-secondary">Cancelar</a>
+                    </center>
+                    
+                </form>
+
+
+              </div>
+
+
+
+        </div>
+      </div>
+<!-- tabla de registro-->
+
+
+
+  </div>
+</div>
+
+</body>
+</html>

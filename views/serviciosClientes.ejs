@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUMHERRA</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Agregamos posición relativa al cuerpo para posicionar las imágenes */
+        }
+        #logo {
+            width: 10%; /* Tamaño al 10% */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Fondo blanco difuminado */
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            max-width: 60%; /* Ancho del contenedor de Misión y Visión */
+            margin: 10px; /* Espacio entre los contenedores */
+            position: relative; /* Agregamos posición relativa a los contenedores */
+        }
+        .container:hover {
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro difuminado al pasar el mouse */
+            color: white;
+        }
+        .parallel-containers {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 60%;
+        }
+        .parallel-container {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+            flex: 1;
+            margin: 10px;
+            position: relative; /* Agregamos posición relativa a los contenedores en paralelo */
+        }
+        .parallel-container:hover {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px; /* Espacio entre los botones */
+        }
+        .button {
+            font-size: 50%; /* Tamaño de fuente más grande para hacer los botones más grandes */
+            padding: 10px 20px; /* Ajusta el espaciado interno de los botones */
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px; /* Hace que los botones sean redondeados */
+            color: white;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            margin: 10px; /* Espacio entre los botones */
+        }
+        .button:hover {
+            background: white;
+            color: black;
+        }
+        .machine-image {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 12%; /* Reducimos el tamaño de la imagen al 50% */
+        }
+        .screw-image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 12%; /* Reducimos el tamaño de la imagen al 50% */
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logo">
+    <div class="image-container">
+    </div>
+    <div class="container">
+        <p>Cotizacion: Bienvenido a el área de cotización, aquí puedes cotizar el tipo de servicio sin necesidad de estar registrado.</p>
+    </div>
+    <div class="parallel-containers">
+        <div class="parallel-container">
+            <p><img class="machine-image" src="maquina.png" alt="Máquina">   Instalación y capacitación de maquinas laser</p>
+            <div class="button-container">
+            </div>
+        </div>
+        <div class="parallel-container">
+            <p><img class="screw-image" src="tornillo.png" alt="Tornillo">   Fabricación de pernos y tornillos</p>
+            <div class="button-container">
+            </div>
+        </div>
+    </div>
+    <div class="parallel-containers">
+        <div class="parallel-container">
+            <p>
+                Recepción y Registro de Solicitudes.
+                Evaluación Técnica. 
+                Cotización y Aprobación.
+                Programación de Servicios.
+                Instalación y Suministro de Repuestos.
+                Capacitación del Personal.
+                Seguimiento PostServicio.
+                Gestión de Garantías y Soporte Técnico Continuo.
+                Actualización de Registros y Base de Conocimientos.
+            </p>
+            <div class="button-container">
+                <a href="/servicioInformacionMaquina"><button class="button">Mas Información</button></a>
+                <a href="/servicioMaquina"><button class="button">Adquirir servicio</button></a>
+            </div>
+        </div>
+        <div class="parallel-container">
+            <p>Selección de Materiales.
+                Corte del alambre o Barra.
+                Forjado en Caliente.
+                Formado de la Cabeza.
+                Roscado.
+                Tratamiento Térmico.
+                Galvanizado o Recubrimiento.
+                Inspección y Control de Calidad.
+                Empaquetado y etiquetado.
+                Almacenamiento y Distribución.</p>
+            <div class="button-container">
+                <a href="/servicioInformacionTornillo"><button class="button">Mas Información</button></a>
+                <a href="/servicioTornillo"><button class="button">Adquirir servicio</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMHERRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Estilo del modal de bienvenida */
+        .modal-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        /* Fin del estilo del modal de bienvenida */
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('background.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 99;
+        }
+
+        .logo {
+            font-size: 2em;
+            color: #fff;
+            user-select: none;
+        }
+
+        .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+        }
+
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: #fff;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .5s;
+        }
+
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .navigation .btnLogin-popup {
+            width: 130px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #fff;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #fff;
+            font-weight: 500;
+            margin-left: 40px;
+            transform: .5s;
+        }
+
+        .navigation .btnLogin-popup:hover {
+            background: #fff;
+            color: #162938;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 400px;
+            height: 440px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .5);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transform: scale(0);
+            transition: transform .5s ease, height .2s ease;
+        }
+
+        .wrapper.active-popup {
+            transform: scale(1);
+        }
+
+        .wrapper.active {
+            height: 520px;
+        }
+
+        .wrapper .form-box {
+            width: 100%;
+            padding: 40px;
+        }
+
+        .wrapper .form-box.login {
+            transition: transform .18s ease;
+            transform: translateX(0);
+        }
+
+        .wrapper.active .form-box.login {
+            transition: none;
+            transform: translateX(-400px);
+        }
+
+        .wrapper .form-box.register {
+            position: absolute;
+            transition: none;
+            transform: translateX(400px);
+        }
+
+        .wrapper.active .form-box.register {
+            transition: transform .18s ease;
+            transform: translateX(0);
+        }
+
+        .wrapper .icon-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45px;
+            height: 45px;
+            background: #162938;
+            font-size: 2em;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-left-radius: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .form-box h2 {
+            font-size: 2em;
+            color: #162938;
+            text-align: center;
+        }
+
+        .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #162938;
+            margin: 30px 0;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: #162938;
+            font-weight: 500;
+            pointer-events: none;
+            transition: 3s;
+        }
+
+        .input-box input:focus~label,
+        .input-box input:focus~label {
+            top: -5px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            color: #162938;
+            font-weight: 600;
+            padding: 0 35px 5px;
+        }
+
+        .input-box .icon {
+            position: absolute;
+            right: 8px;
+            font-size: 1.2em;
+            color: #162938;
+            line-height: 57px;
+        }
+
+        .remember-forgot {
+            font-size: .9em;
+            color: #162938;
+            font-weight: 500;
+            margin: -15px 0 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .remember-forgot label input {
+            accent-color: #162938;
+            margin-right: 3px;
+        }
+
+        .remember-forgot a {
+            color: #162938;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            height: 45px;
+            background: #162938;
+            border: none;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .login-register {
+            font-size: .9em;
+            color: #162938;
+            text-align: center;
+            font-weight: 500;
+            margin: 25px 0 10px;
+        }
+
+        .login-register p a {
+            color: #162938;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-register p a:hover {
+            text-decoration: underline;
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+        }
+
+        /*Carrucel*/
+        .carousel-container {
+            width: 35%; /* Tamaño reducido al 35% */
+            overflow: hidden;
+            position: relative;
+            border: 20px dashed rgba(255, 255, 255, 0.5); /* Borde blanco punteagudo y ancho */
+            transform: skewY(-10deg); /* Inclinación */
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.8s ease; /* Animación más suave */
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .carousel-button-left {
+            left: 0;
+        }
+        .carousel-button-right {
+            right: 0;
+        }
+
+        #contenedorCuadrado {
+            display: none;
+            background: white;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+.product h2 {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.product p {
+  color: #666;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.add-to-cart {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #0056b3;
+}
+
+#cart {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+}
+
+#cart h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+#cart-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+#cart-items li {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+#cart-total {
+  color: #333;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+#product-list {
+  display: flex;
+  flex-wrap: nowrap; /* Para evitar que los productos se envuelvan a la siguiente línea */
+}
+
+.product img {
+  max-width: 100px; /* Establece el tamaño máximo de las imágenes */
+  height: auto;
+}
+
+#cart-icon {
+  position: relative;
+}
+
+#cart-icon a {
+  text-decoration: none;
+  color: #000;
+}
+
+#cart-icon img {
+  width: 30px; /* Tamaño del ícono del carrito */
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+ul.product-list {
+  list-style: none; /* Esto quitará los puntos de la lista */
+}
+
+a {
+  text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+a img {
+  width: 40px; /* Ajusta el ancho de la imagen */
+  height: 40px; /* Ajusta el alto de la imagen */
+}
+
+/* Estilos para el contenedor cuadrado */
+#contenedorCuadrado {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.7); /* Fondo transparente */
+      position: fixed;
+      top: 40%; /* Ajustar la posición vertical */
+      left: 50%;
+      transform: translate(-50%, -90%); /* Centrar en la pantalla */
+      padding: 20px;
+    }
+
+    .product {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100px;
+      height: auto;
+    }
+
+    /* Estilos para el efecto al pasar el ratón por encima */
+    .product:hover {
+      background-color: #f0f0f0; /* Cambia el fondo al pasar el ratón por encima */
+    }
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="/logo.png" alt="Logo del sitio web" style="width: 120px; height: auto;">
+
+        <nav class="navigation">
+            <a href="#" id="productosLink">Catalogo 🔩</a>
+            <a href="#" id="cartLink">Carrito 🛒</a>  <!-- Nuevo enlace para el carrito -->
+
+            <a href="/serviciosClientes">Servicios</a>
+            <form action="/usuarioAjustes" method="POST">
+                <button type="submit" class="btnLogin-popup"><%= username %></button>
+                <input type="hidden" id="idUsuario" value="<%= idUsuario %>"></button>
+
+            </form>
+        </nav>
+    </header>
+
+    <!-- Modal de bienvenida -->
+    <div class="modal-container" id="welcomeModal">
+        <div class="modal-content">
+            <img src="logo.png" alt="Logo del sitio web">
+            <h2>Bienvenido a SUMHERRA</h2>
+            <button id="continueBtn" class="btn">Continuar</button>
+        </div>
+    </div>
+    <!-- Fin del modal de bienvenida -->
+
+    
+
+
+
+
+
+
+
+
+
+    <div class="carousel-container">
+        <div class="carousel">
+            
+            <img src="imagen1.jpg" alt="Imagen 1">
+            <img src="imagen2.jpg" alt="Imagen 2">
+            <img src="imagen3.jpg" alt="Imagen 3">
+            <img src="imagen4.jpg" alt="Imagen 4">
+            <img src="imagen5.jpg" alt="Imagen 5">
+        </div>
+        <button class="carousel-button carousel-button-left" onclick="prevImage()">&#60;</button>
+        <button class="carousel-button carousel-button-right" onclick="nextImage()">&#62;</button>
+    </div>
+    
+    <div id="contenedorCuadrado">
+        <h1>Catalogo</h1>
+        <ul id="product-list">
+          <li class="product">
+            <img src="tornillo1.jpg" alt="Tornillos de acero con acabado bicromatado o cincado">
+            <h2>Tornillos de acero</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillos de acero">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo2.jpg" alt="Tornillos de acero inoxidable">
+            <h2>Tornillos de acero inoxidable</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillos de acero inoxidable">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo3.jpg" alt="Tornillo de enclaje">
+            <h2>Tornillo de enclaje</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillo de enclaje">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo4.jpg" alt="Tornillo hexagonal">
+            <h2>Tornillo hexagona</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillo hexagona">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo5.jpg" alt="Tornillos de latón">
+            <h2>Tornillos de latón</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillos de latón">Agregar al carrito</button>
+
+          </li>
+        </ul>
+        <ul id="product-list">
+          <li class="product">
+            <img src="tornillo6.jpg" alt="Cabeza ranurada">
+            <h2>Cabeza ranurada</h2>
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Cabeza ranurada">Agregar al carrito</button>
+          </button>
+          </li>
+          <li class="product">
+            <img src="tornillo8.jpg" alt="Cabeza cilíndrica con hexágono interior">
+            <h2>Cabeza cilíndrica</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Cabeza cilíndrica">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo9.jpg" alt="Cabeza Torx">
+            <h2>Cabeza Torx</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Cabeza Torx">Agregar al carrito</button>
+
+          </li>
+          <li class="product">
+            <img src="tornillo10.jpg" alt="Tornillos para madera">
+            <h2>Tornillos para madera</h2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#screwModal" data-name="Tornillos para madera">Agregar al carrito</button>
+
+          </li>
+        </ul>
+      </div>
+<!-- Modal -->
+
+<!-- frida -->
+<style>
+ .modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    width: 50%;
+    max-width: none;
+}
+
+.modal-content {
+    width: auto;
+    min-width: 300px;  /* Puedes ajustar este valor según lo necesites */
+    margin: 0 auto;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer .btn {
+    margin-left: 10px;  /* Espacio entre los botones */
+}
+
+.customer-info-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .customer-info-list li {
+        margin-bottom: 5px;  /* Añade un pequeño margen en la parte inferior para separar las líneas, si lo deseas */
+    }
+
+</style>
+
+
+<!-- Modal -->
+<div class="modal fade" id="screwModal" tabindex="-1" role="dialog" aria-labelledby="screwModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="screwModalLabel">Agregar al carrito</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="screwForm">
+                  <div class="form-group">
+                      <label for="quantity">Cantidad de tornillos:</label>
+                      <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="size">Tamaño del tornillo:</label>
+                      <input type="text" class="form-control" id="size" name="size" required placeholder="Introduce un tamaño">
+
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary col-6" data-dismiss="modal">Cerrar</button>
+              <button type="submit" form="screwForm" class="btn btn-primary col-6">Agregar al carrito</button>
+  
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Carrito Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Carrito</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <table id="cartTable" class="table">
+                  <thead>
+                      <tr>
+                          <th>Artículo</th>
+                          <th>Cantidad</th>
+                          <th>Tamaño</th>
+                          <th>Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+              
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="checkoutButton">Realizar pedido</button>
+       
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- frida -->
+
+
+<div class="modal fade" id="customerInfoModal" tabindex="-1" role="dialog" aria-labelledby="customerInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="customerInfoModalLabel">Información de envio</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="customerInfoForm">
+            
+                  <div class="form-group">
+                      <label for="customerName">Nombre:</label>
+                      <input type="text" class="form-control" id="customerName" name="name" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="customerPhone">Teléfono:</label>
+                      <input type="text" class="form-control" id="customerPhone" name="phone" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="customerAddress">Dirección de Envío:</label>
+                      <input type="text" class="form-control" id="customerAddress" name="address" required>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" form="customerInfoForm" class="btn btn-primary">Confirmar Compra</button>
+          
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="orderSummaryModal" tabindex="-1" role="dialog" aria-labelledby="orderSummaryModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 class="modal-title" id="orderSummaryModalLabel">Resumen de la Compra</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <h6 style="text-align: left;">Información del Cliente:</h6>
+            <ul  class="customer-info-list">
+                <li><strong>Nombre:</strong> <span id="customerNameSummary"></span></li>
+                <li><strong>Teléfono:</strong> <span id="customerPhoneSummary"></span></li>
+                <li><strong>Dirección de Envío:</strong> <span id="customerAddressSummary"></span></li>
+            </ul>
+              <p id="customerInfoSummary"></p>
+              <h6>Artículos en el Carrito:</h6>
+              <table id="orderSummaryTable" class="table">
+                  <thead>
+                      <tr>
+                          <th>Artículo</th>
+                          <th>Cantidad</th>
+                          <th>Tamaño</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+       
+              <button type="button" class="btn btn-primary" id="confirmPurchaseButton" data-dismiss="modal">OK</button>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="confirmSendModal" tabindex="-1" role="dialog" aria-labelledby="confirmSendModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="confirmSendModalLabel">Pedido Enviado</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body text-center">
+              <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+              <h6>Su pedido ha sido enviado con éxito</h6>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmOkButton">OK</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  var cart = {
+    items: [],
+    addItem: function(item) {
+        this.items.push(item);
+        this.renderCart();
+    },
+    removeItem: function(index) {
+        this.items.splice(index, 1);
+        this.renderCart();
+    },
+    updateItem: function(index, newItem) {
+        this.items[index] = newItem;
+        this.renderCart();
+    },
+    renderCart: function() {
+        var cartTableBody = $('#cartTable tbody');
+        cartTableBody.empty();
+        this.items.forEach(function(item, index) {
+            var row = $('<tr>').appendTo(cartTableBody);
+            $('<td>').text(item.name).appendTo(row);
+            $('<td>').text(item.quantity).appendTo(row);
+            $('<td>').text(item.size).appendTo(row);
+            var actionsCell = $('<td>').appendTo(row);
+            $('<button>').text('Eliminar').addClass('btn btn-danger').click(function() {
+                cart.removeItem(index);
+            }).appendTo(actionsCell);
+
+        });
+    }
+};
+
+
+
+
+
+$(document).ready(function() {
+
+
+  $('#screwModal').on('shown.bs.modal', function () {
+        $('#screwForm')[0].reset();
+    });
+
+
+    $('#customerInfoModal').on('shown.bs.modal', function () {
+        $('#customerInfoForm')[0].reset();
+    });
+
+
+    $('#orderSummaryModal').on('shown.bs.modal', function () {
+     
+    });
+
+
+  var itemNameGlobal = ""
+  $('.btn.btn-primary').click(function() {
+    var itemName = $(this).data('name');
+    if (itemName === undefined) {
+        console.error('data-name no está definido para este elemento:', this);
+        return; 
+    }
+    itemName = itemName.toString();
+    itemNameGlobal = itemName; 
+
+    $('#screwModalLabel').text('Agregar al carrito: ' + itemName);
+    $('#screwForm').data('item-name', itemName);
+});
+
+    $('#screwForm').submit(function(event) {
+        event.preventDefault();
+        var itemName = $('#screwForm').data('item-name');  
+        console.log(itemName);
+        console.log(itemNameGlobal)
+        var item = {
+            name: itemNameGlobal,
+            quantity: $('#quantity').val(),
+            size: $('#size').val()
+        };
+        console.log(item);
+        cart.addItem(item);
+        $('#screwModal').modal('hide');
+        $('#cartModal').modal('show');
+    });
+});
+
+
+$('#checkoutButton').click(function() {
+    $('#cartModal').modal('hide');
+    $('#customerInfoModal').modal('show');
+});
+$('#customerInfoForm').submit(function(event) {
+    event.preventDefault();
+    var idUsuario = $('#idUsuario').val();  
+    var customerInfo = {
+        idUsuario: idUsuario,
+        name: $('#customerName').val(),
+        phone: $('#customerPhone').val(),
+        address: $('#customerAddress').val(),
+    };
+    var customerInfo = {
+    idUsuario: idUsuario,
+    name: $('#customerName').val(),
+    phone: $('#customerPhone').val(),
+    address: $('#customerAddress').val(),
+};
+
+ 
+ var finalData = {
+        customerInfo: customerInfo,
+        cartItems: cart.items
+    };
+
+ 
+    console.log(JSON.stringify(finalData, null, 2));
+
+$('#customerNameSummary').text(customerInfo.name);
+$('#customerPhoneSummary').text(customerInfo.phone);
+$('#customerAddressSummary').text(customerInfo.address);
+    
+    var orderSummaryTableBody = $('#orderSummaryTable tbody');
+    orderSummaryTableBody.empty();
+    cart.items.forEach(function(item) {
+        var row = $('<tr>').appendTo(orderSummaryTableBody);
+        $('<td>').text(item.name).appendTo(row);
+        $('<td>').text(item.quantity).appendTo(row);
+        $('<td>').text(item.size).appendTo(row);
+    });
+    
+    $('#customerInfoModal').modal('hide');
+    $('#orderSummaryModal').modal('show');
+});
+
+$(document).ready(function() {
+        $('#cartLink').click(function(event) {
+            event.preventDefault();  
+            $('#cartModal').modal('show'); 
+        });
+    });
+
+
+
+
+
+$(document).ready(function() {
+
+ 
+    $('#confirmPurchaseButton').click(function() {
+      var finalData = {
+        customerInfo: {
+            idUsuario: $('#idUsuario').val(),
+            name: $('#customerName').val(),
+            phone: $('#customerPhone').val(),
+            address: $('#customerAddress').val(),
+            estado: 'Pendiente'  
+        },
+        cartItems: cart.items
+    };
+
+  
+        $.ajax({
+            url: '/registrarcompra',  
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(finalData),
+          
+            success: function(response) {
+              
+                $('#confirmSendModal').modal('show');
+            },
+            error: function(error) {
+                console.error('Error registrando la compra:', error);
+             
+            }
+        });
+    }
+    
+    
+    );
+});
+
+$(document).ready(function() {
+    $('#confirmOkButton').click(function() {
+        cart.items = []; 
+        cart.renderCart(); 
+    });
+});
+
+
+</script>
+
+
+    <style>
+      .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 30%;
+}
+
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+    </style>
+
+
+<script>
+  function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+document.querySelectorAll(".product").forEach(product => {
+    product.addEventListener("click", openPopup);
+});
+
+</script>
+
+
+
+
+
+
+    <script>
+        const welcomeModal = document.getElementById('welcomeModal');
+        const continueBtn = document.getElementById('continueBtn');
+
+        // Mostrar el modal automáticamente
+        welcomeModal.style.display = 'flex';
+
+        // Acción al hacer clic en "Continuar"
+        continueBtn.addEventListener('click', () => {
+            welcomeModal.style.display = 'none';
+            // Habilitar los componentes de la página o realizar otras acciones necesarias
+        });
+    </script>
+
+<script>
+    const carousel = document.querySelector('.carousel');
+    const images = document.querySelectorAll('.carousel img');
+    let currentIndex = 0;
+
+    // Define las imágenes para cambiar en el carrusel
+    const nuevasImagenes = [
+        'hexagonal.jpg',
+        'hexagonal.jpg',
+        'hexagonal.jpg',
+        'hexagonal.jpg',
+        'hexagonal.jpg'
+    ];
+
+    function showImage(index) {
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    function autoChangeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    // Función para cambiar las imágenes del carrusel al hacer clic en el hipervínculo
+    function cambiarImagenesCarrusel() {
+        // Cambia el conjunto de imágenes en el carrusel
+        images.forEach((image, index) => {
+            image.src = nuevasImagenes[index];
+            image.alt = `Nueva Imagen ${index + 1}`;
+        });
+
+        // Reinicia el carrusel para mostrar la primera imagen
+        currentIndex = 0;
+        showImage(currentIndex);
+    }
+
+    // Configura el cambio automático del carrusel
+    setInterval(autoChangeImage, 5000); // Cambia de imagen cada 3 segundos
+
+    showImage(currentIndex);
+</script>
+<script>
+    const productosLink = document.getElementById('productosLink');
+    const carouselContainer = document.querySelector('.carousel-container');
+
+    // Agregar un controlador de eventos al hipervínculo de Productos
+    productosLink.addEventListener('click', (e) => {
+        // Evitar que el hipervínculo realice la navegación predeterminada
+        e.preventDefault();
+
+        // Alternar la visibilidad del carrusel al hacer clic en el hipervínculo
+        carouselContainer.style.display = 'none';
+    });
+</script>
+<script>
+    const contenedorCuadrado = document.getElementById('contenedorCuadrado');
+
+    // Agregar un controlador de eventos al hipervínculo de Productos
+    productosLink.addEventListener('click', (e) => {
+        // Evitar que el hipervínculo realice la navegación predeterminada
+        e.preventDefault();
+
+        // Ocultar el carrusel
+        carouselContainer.style.display = 'none';
+
+        // Mostrar el contenedor cuadrado
+        contenedorCuadrado.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUMHERRA</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Agregamos posición relativa al cuerpo para posicionar las imágenes */
+        }
+        #logo {
+            width: 10%; /* Tamaño al 10% */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Fondo blanco difuminado */
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            max-width: 60%; /* Ancho del contenedor de Misión y Visión */
+            margin: 10px; /* Espacio entre los contenedores */
+            position: relative; /* Agregamos posición relativa a los contenedores */
+        }
+        .container:hover {
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro difuminado al pasar el mouse */
+            color: white;
+        }
+        #button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        #button {
+            font-size: 50%; /* Tamaño de fuente más grande para hacer el botón más grande */
+            padding: 10px 20px; /* Ajusta el espaciado interno del botón */
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px; /* Hace que el botón sea redondeado */
+            color: white;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+        }
+        #button:hover {
+            background: white;
+            color: black;
+        }
+
+        .container p {
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logo">
+    <div class="container">
+        <p>1. Selección de materiales:
+            •Se elige el material adecuado para la fabricación de los pernos y tornillos. Los materiales comunes son acero al carbono, acero inoxidable, aleaciones de acero y materiales no ferrosos, según las especificaciones y aplicaciones requeridas.</p>
+        <p>2. Corte del alambre o barra:
+            •Se corta el material en longitudes adecuadas para cada perno o tornillo utilizando maquinaria de corte, como máquinas de corte por estampado o máquinas automáticas.</p>
+        <p>3. Forjado en caliente:
+            •Para ciertos tipos de pernos y tornillos, se realiza el proceso de forjado en caliente para dar forma al material en una matriz mediante presión y calor controlado.</p>
+        <p>4. Formado de la cabeza:
+            •Se da forma a la cabeza del perno o tornillo mediante estampado o troquelado, creando diferentes tipos de cabezas, como cabeza hexagonal, cabeza redonda o cabeza avellanada.</p>
+        <p>5. Roscado:
+            •Los pernos y tornillos se someten a un proceso de roscado en el cual se cortan las estrías helicoidales en el cuerpo del perno. Esto se puede realizar mediante laminación en frío o mediante el uso de máquinas de roscado.</p>
+        <p>6. Tratamiento térmico:
+            •Para mejorar las propiedades mecánicas de los pernos y tornillos, se puede realizar un tratamiento térmico, como el temple y revenido, para aumentar su resistencia y dureza.</p>
+        <p>7. Galvanizado o recubrimiento:
+            •En muchos casos, los pernos y tornillos se someten a un proceso de galvanizado o se aplican recubrimientos protectores para aumentar su resistencia a la corrosión y mejorar su durabilidad.</p>
+        <p>8. Inspección y control de calidad:
+            •Se realiza una inspección de calidad para garantizar que los pernos y tornillos cumplan con las especificaciones requeridas. Se verifican dimensiones, resistencia, rosca y otros criterios de calidad.</p>
+        <p>9. Empaquetado y etiquetado:
+            •Los pernos y tornillos se empaquetan adecuadamente y se etiquetan con información relevante, como tipo, tamaño y propiedades, para facilitar su identificación y uso posterior.</p>
+        <p>10. Almacenamiento y distribución:
+            • Los pernos y tornillos terminados se almacenan correctamente en condiciones adecuadas antes de su distribución y venta a los clientes.</p>
+    </div>
+    <div id="button-container">
+        <a href="/cotizacionCliente">
+            <button id="button">Volver</button>
+        </a>
+    </div>
+</body>
+</html>

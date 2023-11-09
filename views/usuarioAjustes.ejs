@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Creativa</title>
+    <style>
+        body {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .user-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            border: 2px solid #fff;
+            border-radius: 20px;
+        }
+
+        .user-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 10px;
+            background: url('usuario.png') no-repeat;
+            background-size: cover;
+        }
+
+        .user-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .user-button {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .user-button:hover {
+            background: #162938;
+            color: #fff;
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-image {
+            width: 100px;
+            height: 100px;
+            background: url('logo.png') no-repeat center;
+            background-size: cover;
+            margin: 0 auto;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+        }
+
+        .modal-button {
+            background: transparent;
+            color: #000;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .modal-button:hover {
+            background: #162938;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-container">
+        <div class="user-image"></div>
+        <div class="user-buttons">
+            <button class="user-button" onclick="confirmLogout()">Cerrar sesión</button>
+        </div>
+    </div>
+
+    <!-- Modal para confirmación -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-image"></div>
+            <p>¿Estás seguro que quieres cerrar sesión?</p>
+            <div class="modal-buttons">
+                <button class="modal-button" onclick="logout()">Sí</button>
+                <button class="modal-button" onclick="cancelLogout()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar el modal de confirmación
+        function confirmLogout() {
+            var modal = document.getElementById("confirmationModal");
+            modal.style.display = "block";
+        }
+
+        // Función para cerrar la sesión
+        function logout() {
+            // Realiza aquí las acciones de cierre de sesión (elimina cookies, tokens, etc.)
+            // Después, redirige al usuario a la página de inicio u otra página deseada.
+            alert("Sesión cerrada correctamente.");
+            window.location.href = "/";
+            
+            // Elimina la página de cierre de sesión del historial
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, '/');
+            }
+        }
+
+        // Función para cancelar el cierre de sesión
+        function cancelLogout() {
+            var modal = document.getElementById("confirmationModal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
+
+
+

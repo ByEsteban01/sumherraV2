@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ordenes generadas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+  
+  
+
+
+
+  <style>
+
+    
+    
+body {
+            background-image: url('fondo2.jpeg');
+            background-size: cover; /* Ajustar la imagen al tamaño de la ventana del navegador */
+            background-attachment: fixed; /* Opcional: hacer que el fondo permanezca fijo al desplazar la página */
+        }
+
+
+
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: #039cd8;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 40px;
+        }
+        
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 3px;
+            background: #039cd8;
+            border-radius: 5px;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .5s;
+        }
+        
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+        
+        .navigation .btnLogin-popup {
+            width: 130px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #747272;
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #039cd8;
+            font-weight: 500;
+            margin-left: 40px;
+            transform: .5s;
+        }
+        
+        .navigation .btnLogin-popup:hover {
+            background: #039cd8;
+            color: #162938;
+        }
+  </style>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/index.ejs">Inicio</a></li>
+        <li><a href="/usuario.ejs">Usuarios</a></li>
+        <li><a href="/empleado.ejs">Empleados</a></li>
+        <li><a href="/clientes.ejs">Clientes</a></li>
+        <li><a href="/ordenes.ejs">Ordenes</a></li>
+        <li><a href="/cotizacion.ejs">Cotizaciones</a></li>
+        <li><a href="/categoria.ejs">Categoria</a></li>
+        <li><a href="/producto.ejs">Productos</a></li>
+        <li><a href="/servicio.ejs">Servicios</a></li>
+        <li><a href="/proveedores.ejs">Proveedores</a></li>
+        <li><a href="/materia.ejs">Materia Prima</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+
+    <nav class="navigation">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <center><img src="/logo.png" alt="Logo del siteo web" style="width: 120px; height: auto;"></center>
+      <ul class="nav nav-pills nav-stacked">
+        <li ><a href="/index.ejs">Inicio</a></li>
+        <li><a href="/usuario.ejs">Usuarios</a></li>
+        <li><a href="/empleado.ejs">Empleados</a></li>
+        <li><a href="/clientes.ejs">Clientes</a></li>
+        <li class="active"><a href="/ordenes.ejs">Ordenes</a></li>
+        <li><a href="/cotizacion.ejs">Cotizaciones</a></li>
+        <li><a href="/categoria.ejs">Categoria</a></li>
+        <li><a href="/producto.ejs">Productos</a></li>
+        <li><a href="/servicio.ejs">Servicios</a></li>
+        <li><a href="/proveedores.ejs">Proveedores</a></li>
+        <li><a href="/materia.ejs">Materia Prima</a></li>
+      </ul><br>
+    </div>
+  </nav>
+
+    <br>
+    
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>Ordenes Generadas</h4>
+        <p>Aqui se encuentran todas las ordenes generadas</p>
+      </div>
+    </div>
+
+
+ 
+    <div class="col-sm-9">
+        <div class="well">
+          
+
+            <div>    
+                
+                <table class="table table-bordered table-striped text-center mt-4" id="tuSegundaTabla">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th scope="col" style="text-align:center;">ID Pedido</th>
+                            <th scope="col" style="text-align:center;">ID Usuario</th>
+                            <th scope="col" style="text-align:center;">Nombre</th>
+                            <th scope="col" style="text-align:center;">Teléfono</th>
+                            <th scope="col" style="text-align:center;">Dirección</th>
+                            <th scope="col" style="text-align:center;">Estado</th>
+                            <th scope="col" style="text-align:center;">Fecha Pedido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% results.forEach(function(pedido) { %>
+                            <tr>
+                                <td><%= pedido.idPedido %></td>
+                                <td><%= pedido.idUsuario %></td>
+                                <td><%= pedido.nombre %></td>
+                                <td><%= pedido.telefono %></td>
+                                <td><%= pedido.direccion %></td>
+                                <td><%= pedido.estado %></td>
+                                <td><%= pedido.fechaPedido %></td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#estadoModal" data-id="<%= pedido.idPedido %>">Cambiar Estado</button></td>
+                                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#verModal" data-id="<%= pedido.idPedido %>">Ver</button></td>
+                                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal" data-id="<%= pedido.idPedido %>">Eliminar</button></td>
+
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+           
+              </div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="estadoModalLabel">Cambiar Estado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <input type="hidden" id="pedidoId" value="">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="estado" id="estadoPendiente" value="Pendiente">
+              <label class="form-check-label" for="estadoPendiente">
+                Pendiente
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="estado" id="estadoAtendido" value="Atendido">
+              <label class="form-check-label" for="estadoAtendido">
+                Atendido
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+<div class="modal fade" id="verModal" tabindex="-1" role="dialog" aria-labelledby="verModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" id="verModalLabel">Detalle del Pedido</h3>
+         
+        </div>
+        <div class="modal-body" id="detallePedidoBody">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar este pedido?
+          <input type="hidden" id="eliminarPedidoId" value="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar el pedido con ID: <span id="pedidoIdSpan"></span>?
+                <input type="hidden" id="eliminarPedidoId" value="">
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+  $('#estadoModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);  
+    var pedidoId = button.data('id');  
+    var modal = $(this);
+    modal.find('#pedidoId').val(pedidoId); 
+  });
+});
+
+
+
+$(document).ready(function() {
+  $('#estadoModal .btn-primary').on('click', function() {
+    var estado = $('input[name="estado"]:checked').val();  
+    var pedidoId = $('#pedidoId').val();  
+    var data = { idPedido: pedidoId, estado: estado };  
+
+    fetch('/actualizar-orden', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data), 
+    })
+    .then(response => {
+      if (!response.ok) {
+
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();  
+    })
+    .then(data => {
+
+      
+      $('#estadoModal').modal('hide');  
+      window.location.href = window.location.href;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      $('#estadoModal').modal('hide');  
+      window.location.href = window.location.href;
+    });
+  });
+});
+
+
+
+$(document).ready(function() {
+  $('#verModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);  
+    var pedidoId = button.data('id');  
+
+
+    fetch('/verpedido/' + pedidoId)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+
+        var contenido = `
+    <div class="panel panel-default">
+        <div class="panel-heading text-center" style="background-color: blue; color: white;">
+            <h3 class="panel-title">Usuario que generó la orden</h3>
+        </div>
+        <div class="panel-body">
+            <p><strong>Nombre Usuario:</strong> ${data.pedido.username}</p>
+            <p><strong>Correo Usuario:</strong> ${data.pedido.correo}</p>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading text-center" style="background-color: blue; color: white;">
+            <h3 class="panel-title">Detalles de envío</h3>
+        </div>
+        <div class="panel-body">
+            <p><strong>Pedido ID:</strong> ${data.pedido.idPedido}</p>
+            <p><strong>Nombre:</strong> ${data.pedido.nombre}</p>
+            <p><strong>Teléfono:</strong> ${data.pedido.telefono}</p>
+            <p><strong>Dirección:</strong> ${data.pedido.direccion}</p>
+            <p><strong>Estado:</strong> ${data.pedido.estado}</p>
+            <p><strong>Fecha Pedido:</strong> ${data.pedido.fechaPedido}</p>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Productos</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre Producto</th>
+                        <th>Cantidad</th>
+                        <th>Tamaño</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+        
+        data.items.forEach(item => {
+          contenido += `
+            <tr>
+              <td>${item.nombreProducto}</td>
+              <td>${item.cantidad}</td>
+              <td>${item.tamano}</td>
+            </tr>`;
+        });
+
+        contenido += `</tbody></table>`;
+
+ 
+        $('#detallePedidoBody').html(contenido);
+      })
+      .catch(error => console.error('Error:', error));
+  });
+
+
+
+});$(document).ready(function() {
+
+    $('#eliminarModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);  
+        var pedidoId = button.data('id');  
+        console.log(pedidoId)
+        $('#eliminarPedidoId').val(pedidoId); 
+        $('#pedidoIdSpan').text(pedidoId); 
+    });
+
+    $('#confirmarEliminar').on('click', function() {
+        var pedidoId = $('#eliminarPedidoId').val();  
+
+        fetch('/eliminarpedido/' + pedidoId, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (!response.ok) {
+          
+                throw new Error('Network response was not ok ' + response.statusText);
+
+            }
+        
+        })
+        .then(data => {
+            $('#eliminarModal').modal('hide'); 
+            window.location.href = window.location.href;  
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
+
+
+</script>
+
+
+  </div>
+</div>
+
+</body>
+</html>

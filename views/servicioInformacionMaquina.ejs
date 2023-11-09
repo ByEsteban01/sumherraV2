@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUMHERRA</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Agregamos posición relativa al cuerpo para posicionar las imágenes */
+        }
+        #logo {
+            width: 10%; /* Tamaño al 10% */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Fondo blanco difuminado */
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            max-width: 60%; /* Ancho del contenedor de Misión y Visión */
+            margin: 10px; /* Espacio entre los contenedores */
+            position: relative; /* Agregamos posición relativa a los contenedores */
+        }
+        .container:hover {
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro difuminado al pasar el mouse */
+            color: white;
+        }
+        #button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        #button {
+            font-size: 50%; /* Tamaño de fuente más grande para hacer el botón más grande */
+            padding: 10px 20px; /* Ajusta el espaciado interno del botón */
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px; /* Hace que el botón sea redondeado */
+            color: white;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+        }
+        #button:hover {
+            background: white;
+            color: black;
+        }
+
+        .container {
+        background: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 20px;
+        text-align: left; /* Alinea el texto a la izquierda */
+        transition: background 0.3s, color 0.3s;
+        max-width: 60%;
+        margin: 10px;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logo">
+    <div class="container">
+        <p>1. Recepción y registro de solicitudes:
+            •Los clientes contactan al servicio técnico para solicitar asistencia, instalación, capacitación o repuestos.
+            •Se registra la solicitud con los detalles del cliente, el tipo de servicio requerido y la información relevante de la máquina.</p>
+        <p>2. Evaluación técnica:
+            •Un técnico calificado realiza una evaluación técnica de la máquina.</p>
+        <p>3. Cotización y aprobación:
+            •Con base en la evaluación técnica, se genera una cotización detallada que incluye los costos de servicio, instalación, capacitación y repuestos (si aplicable).
+            •El cliente revisa y aprueba la cotización.</p>
+        <p>4. Programación de servicios:
+            •Se programa una fecha y hora conveniente para llevar a cabo la instalación, la capacitación o el suministro de repuestos, dependiendo de la naturaleza del servicio solicitado.</p>
+        <p>5. Instalación y suministro de repuestos:
+            •El equipo técnico realiza la instalación de la máquina láser o inyectora en el lugar indicado por el cliente.
+            •Si se requiere, se suministran los repuestos necesarios para el correcto funcionamiento de la máquina.</p>
+        <p>6. Capacitación del personal:
+            •Se lleva a cabo la capacitación del personal del cliente para asegurar un uso adecuado y seguro de la máquina láser o inyectora.
+            •Se brinda información sobre el funcionamiento, mantenimiento básico y precauciones de seguridad</p>
+        <p>7. Seguimiento post-servicio:
+            •Después de la instalación y capacitación, se realiza un seguimiento con el cliente para asegurarse de que la máquina esté funcionando correctamente y resolver cualquier duda adicional.</p>
+        <p>8. Gestión de garantías y soporte técnico continuo:
+            •Se ofrece soporte técnico continuo para cualquier problema o consulta relacionada con la máquina.
+            •Si aplica, se gestiona y se cumple con los términos de la garantía para los repuestos y servicios proporcionados.</p>
+        <p>9. Actualización de registros y base de conocimientos:
+            •Se actualizan los registros del cliente con la información relevante sobre los servicios proporcionados.
+            •Se agrega nueva información a la base de conocimientos del servicio técnico para futuras referencias y mejora del proceso</p>
+    </div>
+    <div id="button-container">
+        <a href="/serviciosClientes">
+            <button id="button">Volver</button>
+        </a>
+    </div>
+</body>
+</html>

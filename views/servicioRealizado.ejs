@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUMHERRA</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 255, 0.7); /* Fondo azul */
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: #3498db; /* Fondo azul */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-logo {
+            width: 20%; /* Tamaño del logo en el modal */
+        }
+
+        .button {
+            font-size: 16px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px;
+            color: white;
+            transition: background 0.3s, color 0.3s;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background: white;
+            color: blue; /* Cambiado a azul */
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <img class="modal-logo" src="logo.png" alt="Logo">
+            <h2>Gracias por realizar tu formuladio de servicio</h2>
+            <p>Te contestaremos lo antes posible.</p>
+            <a href="/serviciosClientes" class="button">Continuar</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para mostrar el modal automáticamente al cargar la página
+        window.onload = function () {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'block';
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #logo {
+            width: 10%; /* Tamaño al 10% */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Fondo blanco difuminado */
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            max-width: 60%; /* Ancho del contenedor de Misión y Visión */
+            margin: 10px; /* Espacio entre los contenedores */
+        }
+        .container:hover {
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro difuminado al pasar el mouse */
+            color: white;
+        }
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #button {
+            font-size: 50%; /* Tamaño de fuente más grande para hacer el botón más grande */
+            padding: 10px 20px; /* Ajusta el espaciado interno del botón */
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px; /* Hace que el botón sea redondeado */
+            color: white;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+        }
+        #button:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logo">
+    <div class="container">
+        <p>Contacto: Puedes contactarnos a través de nuestro correo electrónico o número de teléfono.</p>
+        <p> Estamos disponibles para responder a tus preguntas y atender tus necesidades.</p>
+    </div>
+    <div class="container">
+        <p>🏢 Condominio La Castellana, 2da. Calle 0-48, Lote #170, Zona 10 San Miguel Petapa. Guatemala</p>
+        <p>✉ julioamaya41@gmail.com</p>
+        <p>📱 5460-2078</p>
+        <p>📱 5930-5210</p>
+    </div>
+    <div id="button-container">
+        <a href="/">
+            <button id="button">Volver</button>
+        </a>
+    </div>
+</body>
+</html>

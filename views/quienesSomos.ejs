@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUMHERRA</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #logo {
+            width: 10%; /* Tamaño al 10% */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Fondo blanco difuminado */
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+            max-width: 60%; /* Ancho del contenedor de Misión y Visión */
+            margin: 10px; /* Espacio entre los contenedores */
+        }
+        .container:hover {
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro difuminado al pasar el mouse */
+            color: white;
+        }
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #button {
+            font-size: 50%; /* Tamaño de fuente más grande para hacer el botón más grande */
+            padding: 10px 20px; /* Ajusta el espaciado interno del botón */
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 20px; /* Hace que el botón sea redondeado */
+            color: white;
+            transition: background 0.3s, color 0.3s; /* Transición suave de color de fondo y tipografía */
+        }
+        #button:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <img id="logo" src="logo.png" alt="Logo">
+    <div class="container">
+        <p>La empresa nace a través de la necesidad de clientes que desean tener un proveedor de herramientas de corte que les provea soluciones a sus requerimientos de materiales a mecanizar. Herramientas de alta calidad, y soporte técnico en el uso de estas.
+            Somos una Empresa100% guatemalteca, que nace de la necesidad de muchos clientes, que buscan soluciones para el mecanizado de piezas industriales. Y en nuestro mercado local, es difícil encontrarlas. Suministros Herramentales. Cuenta con personal técnico, para ofrecer a nuestros clientes, Soluciones Inmediatas. Contamos con nuestro propio laboratorio de pruebas de Herramientas de Corte.</p>
+    </div>
+    <div class="container">
+        <p>Misión: Proveer de herramientas de corte, fresado, taladrado y rectificado de alto rendimiento, que garanticen precisión en la fabricación de piezas y repuestos para la industria del torno y fresadora.</p>
+    </div>
+    <div class="container">
+        <p>Visión: Ser reconocida como una empresa dedicada a brindar soporte y soluciones a la medida en el campo industrial a través de la comercialización de herramientas y accesorios que permitan un desarrollo competitivo, brindando a nuestros clientes asesoría técnica en el manejo de nuestros productos.</p>
+    </div>
+    <div id="button-container">
+        <a href="/">
+            <button id="button">Volver</button>
+        </a>
+    </div>
+    
+</body>
+</html>
